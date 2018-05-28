@@ -2,7 +2,7 @@
 StreamEngine is an extention of the matplotlib Animation class which enables the user to easily plot real time streaming data.
 [![StreamEngine Example](https://i.imgur.com/lM6gSEc.png)](https://www.youtube.com/watch?v=bgwOTcpNV9Q)
 ## Install  
-`pip install stream_engine
+`pip install stream_engine`
 
 ## Basic Example
 ```Python
