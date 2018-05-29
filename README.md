@@ -31,8 +31,6 @@ plt.show()   #(6) Show the plot.
 ```
 ![StreamEngine Example](https://i.imgur.com/ADOYrDv.png)
 
-**Note** These gif images may be choppy and not reflect proper performance.
-
 You can change the speed of the plot by passing an interval to StreamAnimation.  
 `anim = StreamAnimation(fig, interval=100)`  
 Delay between frames in milliseconds.  Defaults to 200.  
@@ -55,7 +53,7 @@ total_ave_stream = Stream(ax1, cpu_average)
 all_cpus_stream = Stream(ax1, all_cpus)
 anim.add_stream(total_ave_stream, all_cpu_stream)
 ```
-<img src="media/ex2.gif" width="400"/>
+![StreamEngine Example](https://i.imgur.com/3ALvZ1m.png)
 ok, neat! but that data looks kinda crazy. Lets turn the filter on and see what happens.
 
 ```Python
@@ -64,7 +62,7 @@ all_cpus_stream = Stream(ax1, all_cpus, filt=True)  # just add filt=True to filt
 anim.add_stream(total_ave_stream, all_cpus_stream)
 ```
 Now the `all_cpus_stream` stream is being filtered by applying a gaussian filter to smooth the data. While the `total_ave_stream` stream remains unfiltered.  
-<img src="media/ex3.gif" width="400"/>
+![StreamEngine Example](https://i.imgur.com/RZpHlHS.png)
 
 The data now looks much cleaner. Ok now lets put each stream on its own axes.  
 ```Python
