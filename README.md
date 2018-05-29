@@ -29,7 +29,7 @@ anim.add_stream(total_ave_stream)  # (5) Add the Stream object to the StreamAnim
 plt.tight_layout()
 plt.show()   #(6) Show the plot.
 ```
-<img src="media/ex1.gif" width="400"/>
+![StreamEngine Example](https://i.imgur.com/ADOYrDv.png)
 
 **Note** These gif images may be choppy and not reflect proper performance.
 
