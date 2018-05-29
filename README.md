@@ -79,7 +79,7 @@ total_ave_stream = Stream(ax1, cpu_average)
 all_cpus_stream = Stream(ax2, all_cpus, filt=True)  # change to ax2
 anim.add_stream(total_ave_stream, all_cpus_stream)
 ```
-<img src="media/ex4.gif" width="400"/>
+![StreamEngine Example](https://i.imgur.com/9IXyoRC.png)
 
 ## Styles
 Each Stream line can be styled like any other matplotlib line. Just pass a dict of styles to the Stream.
