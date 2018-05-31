@@ -1,6 +1,6 @@
 # StreamEngine
 StreamEngine is an extention of the matplotlib Animation class which enables the user to easily plot real time streaming data.
-[![StreamEngine Example](https://i.imgur.com/lM6gSEc.png)](https://www.youtube.com/watch?v=bgwOTcpNV9Q)
+[![StreamEngine Example](https://i.imgur.com/6w3vfG3.png)](https://www.youtube.com/watch?v=bgwOTcpNV9Q)
 ## Install  
 `pip install stream_engine`
 
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     plt.tight_layout()
     plt.show()
 ```
-![StreamEngine Example](https://i.imgur.com/ADOYrDv.png)
+![StreamEngine Example](https://i.imgur.com/oSIavjc.png)
 
 ## Streams with Multiple Inputs.
 A new `Stream.thread` is created for each value in a list retured by the defined data function. A `Stream.thread` is simply an objects that holds the line and line data to be plotted for the Stream.
@@ -47,7 +47,7 @@ ave_stream = Stream(ax1, cpu_average)
 cpu_stream = Stream(ax1, all_cpu)
 anim.add_stream(ave_stream, cpu_stream)
 ```
-![StreamEngine Example](https://i.imgur.com/3ALvZ1m.png)
+![StreamEngine Example](https://i.imgur.com/yLscUM1.png)
 
 ## Processing Data
 By default no processing is done to the data. It is simply graphed as it is recieved. However you can define a custom data processor to process Stream data before it is plotted.
@@ -75,7 +75,7 @@ def filter_proc(thread, data):
 # In this case we will filter the cpu_stream and leave the ave_stream unfiltered.
 cpu_stream = Stream(ax1, all_cpu, proc=filter_proc)
 ```
-![StreamEngine Example](https://i.imgur.com/RZpHlHS.png)
+![StreamEngine Example](https://i.imgur.com/ddgmVUt.png)
 
 
 The data now looks much cleaner. Lets put each Stream on its own axes.  
@@ -93,7 +93,7 @@ ave_stream = Stream(ax1, cpu_average)
 cpu_stream = Stream(ax2, all_cpu, proc=filter_proc)  # Set to ax2
 anim.add_stream(ave_stream, cpu_stream)
 ```
-![StreamEngine Example](https://i.imgur.com/9IXyoRC.png)
+![StreamEngine Example](https://i.imgur.com/LmmCbpO.png)
 
 ## Styles
 Each Stream line can be styled like any other matplotlib line.
@@ -114,7 +114,7 @@ cpu_stream = Stream(ax2, all_cpu, proc=filter_proc, style=cpu_style)
 ax1.legend(framealpha=.0, loc=9)
 ax2.legend(framealpha=.0, loc=9, ncol=4)
 ```
-![StreamEngine Example](https://i.imgur.com/9IXyoRC.png)
+![StreamEngine Example](https://i.imgur.com/WBPt1WC.png)
 
 ## Taking it Further.
 Lets add a new Stream that represents our computers memory usage.
@@ -140,7 +140,7 @@ ax3.legend(framealpha=.0, loc=9, ncol=2)
 # Add to our StreamAnimation object.
  anim.add_stream(ave_stream, cpu_stream, mem_stream)
 ```
-![StreamEngine Example](https://i.imgur.com/9IXyoRC.png)
+![StreamEngine Example](https://i.imgur.com/A6sIA99.png)
 
 ## Putting it all together
 
