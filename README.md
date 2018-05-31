@@ -134,7 +134,7 @@ ax3.set_ylim(0, 100)
 # Lets also create a style for it while we're at it. 
 mem_style = [{'linestyle': '--', 'label': 'main', 'color': 'g'},
              {'linestyle': '--', 'label': 'swap', 'color': 'r'}]
-mem_stream = Stream(ax3, mem_percent, group_style=mem_style)
+mem_stream = Stream(ax3, mem_percent, style=mem_style)
 ax3.legend(framealpha=.0, loc=9, ncol=2)
 
 # Add to our StreamAnimation object.
