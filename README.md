@@ -49,9 +49,9 @@ anim.add_stream(ave_stream, cpu_stream)
 ![StreamEngine Example](https://i.imgur.com/3ALvZ1m.png)
 
 ## Processing Data
-By default no processing is done to the data. It is simply graphed as it it recieved. However you can define a custom data processor to process Stream data before it is plotted.
+By default no processing is done to the data. It is simply graphed as it is recieved. However you can define a custom data processor to process Stream data before it is plotted.
 
-In our example above we are plotting the raw cpu percent values which are very speratic and hard to read. We can define a custom processor to smooth the data before we plot it which will make it more readable and mimic a standard system monitor tool.
+In our example above we are plotting the raw cpu percent values which are very sporadic and hard to read. We can define a custom processor to smooth the data before we plot it which will make it more readable and mimic a standard system monitor tool.
 
 A Stream processor takes in a thread (the line object and the line data) and data (the next value to be added tot the thread).
 ```Python
