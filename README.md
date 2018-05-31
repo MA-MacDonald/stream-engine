@@ -22,9 +22,9 @@ ax1.set_ylim(0, 100)
 
 anim = StreamAnimation(fig)  # (3) Create a StreamAnimation object and pass it the figure.
 
-total_ave_stream = Stream(ax1, cpu_average)  # (4) Create a Stream object and pass the 
+ave_stream = Stream(ax1, cpu_average)  # (4) Create a Stream object and pass the 
                                                   # axes you want to plot to and data function.
-anim.add_stream(total_ave_stream)  # (5) Add the Stream object to the StreamAnimation object.
+anim.add_stream(ave_stream)  # (5) Add the Stream object to the StreamAnimation object.
 
 plt.tight_layout()
 plt.show()   #(6) Show the plot.
@@ -49,17 +49,17 @@ def all_cpus():
 ```
 Now lets create a new Stream with our new data function and add it to our StreamAnimation object `anim`.  
 ```Python
-total_ave_stream = Stream(ax1, cpu_average)
-all_cpus_stream = Stream(ax1, all_cpus)
-anim.add_stream(total_ave_stream, all_cpu_stream)
+ave_stream = Stream(ax1, cpu_average)
+cpus_stream = Stream(ax1, all_cpus)
+anim.add_stream(ave_stream, cpu_stream)
 ```
 ![StreamEngine Example](https://i.imgur.com/3ALvZ1m.png)
 ok, neat! but that data looks kinda crazy. Lets turn the filter on and see what happens.
 
 ```Python
-total_ave_stream = Stream(ax1, cpu_average)
-all_cpus_stream = Stream(ax1, all_cpus, filt=True)  # just add filt=True to filter this stream.
-anim.add_stream(total_ave_stream, all_cpus_stream)
+ve_stream = Stream(ax1, cpu_average)
+cpus_stream = Stream(ax1, all_cpus, filt=True)  # just add filt=True to filter this stream.
+anim.add_stream(ave_stream, cpus_stream)
 ```
 Now the `all_cpus_stream` stream is being filtered by applying a gaussian filter to smooth the data. While the `total_ave_stream` stream remains unfiltered.  
 ![StreamEngine Example](https://i.imgur.com/RZpHlHS.png)
@@ -75,25 +75,28 @@ ax2 = fig.add_subplot(212)
 ax2.set_xlim(0, 500)
 ax2.set_ylim(0, 100)
 
-total_ave_stream = Stream(ax1, cpu_average)
-all_cpus_stream = Stream(ax2, all_cpus, filt=True)  # change to ax2
-anim.add_stream(total_ave_stream, all_cpus_stream)
+ave_stream = Stream(ax1, cpu_average)
+cpus_stream = Stream(ax2, all_cpus, filt=True)  # change to ax2
+anim.add_stream(ave_stream, cpus_stream)
 ```
 ![StreamEngine Example](https://i.imgur.com/9IXyoRC.png)
 
 ## Styles
-Each Stream line can be styled like any other matplotlib line. Just pass a dict of styles to the Stream.
+Each Stream line can be styled like any other matplotlib line.
 ```Python
-# for a single stream just pass a dict of styles
-cpu_single_style = {'linestyle': '--', 'label': 'cpu average', 'color': 'r'}
-total_ave_stream = Stream(ax1, cpu_average, style=cpu_single_style)
+# a style should be passed as a list containing dicts eg.--> style=[{'color': 'r', 'label': 'foo'}]
 
-# for multiple streams pass a list of style dicts to group_style kwarg.
-cpu_group_style = [{'linestyle': '-', 'label': 'cpu1'},
-                   {'linestyle': '-', 'label': 'cpu2'},
-                   {'linestyle': '-', 'label': 'cpu3'},
-                   {'linestyle': '-', 'label': 'cpu4'}]
-all_cpus_stream = Stream(ax2, all_cpus, filt=True, group_style=cpu_group_style)
+# for single streams
+ave_style = [{'linestyle': '--', 'label': 'cpu average'}]
+ave_stream = Stream(ax1, cpu_average, style=ave_style)
+
+# for multiple streams.
+cpus_style = [{'linestyle': '-', 'label': 'cpu1'},
+              {'linestyle': '-', 'label': 'cpu2'},
+              {'linestyle': '-', 'label': 'cpu3'},
+              {'linestyle': '-', 'label': 'cpu4'}]
+cpus_stream = Stream(ax2, all_cpus, filt=True, style=cpus_style)
+
 ax1.legend(loc=9)
 ax2.legend(loc=9, ncol=4)
 ```
@@ -121,7 +124,7 @@ mem_stream = Stream(ax3, mem_percent, group_style=mem_style)
 ax3.legend(loc=9, ncol=2)
 
 # Add to our StreamAnimation object.
- anim.add_stream(ave_stream, all_stream, mem_stream)
+ anim.add_stream(ave_stream, cpus_stream, mem_stream)
 ```
 
 <img src="media/ex6.gif" width="400"/>
@@ -145,7 +148,7 @@ base_style = {'figure.facecolor': '2d2d2d',
               'xtick.color': 'efefef',
               'ytick.color': 'efefef'}
 
-ave_style = {'label': 'cpu average'}
+ave_style = [{'label': 'cpu average'}]
 
 cpu_style = [{'label': 'cpu1'},
              {'label': 'cpu2'},
@@ -196,8 +199,8 @@ if __name__ == '__main__':
         return virtual_memory().percent, swap_memory().percent
 
     ave_stream = Stream(ax1, cpu_average, buffer=5, style=ave_style)
-    cpu_stream = Stream(ax2, cpu_percents, filt=True, buffer=5, group_style=cpu_style)
-    mem_stream = Stream(ax3, memory_percent, buffer=5, group_style=mem_style)
+    cpu_stream = Stream(ax2, cpu_percents,  buffer=5, style=cpu_style, filt=True)
+    mem_stream = Stream(ax3, memory_percent, buffer=5, style=mem_style)
 
     config(ax1, ax2, ax3)
 
