@@ -39,7 +39,7 @@ from psutil import cpu_percent
 def all_cpu():
     return cpu_percent(percpu=True)  # Note: we do not have to bracket the return because 
                                      # psutil.cpu_percent(percpu=True) returns a list by default.
-                                     # returns --> [cpu1%, cpu2%, cpu3%, cpu4%]
+                                     # returns --> [cpu1%, cpu2%, cpu3%, cpu4%] (4 stream.threads created)
 ```
 Now lets create a new Stream with our new data function and add it to our StreamAnimation object.  
 ```Python
