@@ -29,16 +29,17 @@ if __name__ == '__main__':
 ```
 ![StreamEngine Example](https://i.imgur.com/ADOYrDv.png)
 
-## Multi-Stream Example
-A new stream is created for each value in a list retured by the defined data function.  
+## Streams with Multiple Inputs.
+A new `Stream.thread` is created for each value in a list retured by the defined data function. A `Stream.thread` is simply an objects that holds the line and line data to be plotted for the Stream.
 **Note:** A data function must return a list of data. The above data function returns one value so we bracket the return value.
 
-For example if we were to create a new function that returns the % for each individual cpu instead of a single average...
+For example if we were to create a new function that returns the cpu % for each individual cpu im our computer, instead of a single average. A new `Stream.thread` will be added to the Stream for each cpu in our computer (a new line to be plotted).
 ```Python
 from psutil import cpu_percent
 def all_cpu():
     return cpu_percent(percpu=True)  # Note: we do not have to bracket the return because 
                                      # psutil.cpu_percent(percpu=True) returns a list by default.
+                                     # returns --> [cpu1%, cpu2%, cpu3%, cpu4%]
 ```
 Now lets create a new Stream with our new data function and add it to our StreamAnimation object.  
 ```Python
