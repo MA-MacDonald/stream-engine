@@ -21,8 +21,8 @@ if __name__ == '__main__':
     ax1.set_xlim(0, 600)
     ax1.set_ylim(0, 100)
 
-    anim = StreamAnimation(fig, interval=100)
-    anim.add_stream(Stream(ax1, cpu_average))
+    anim = StreamAnimation(fig, interval=100)  # Create a StreamAnimation object.
+    anim.add_stream(Stream(ax1, cpu_average))  # Add a Stream with a data function to it. 
 
     plt.tight_layout()
     plt.show()
