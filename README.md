@@ -11,10 +11,10 @@ from stream_engine.stream import Stream, StreamAnimation
 
 if __name__ == '__main__':
     from psutil import cpu_percent
-
-    def cpu_average():
+    
+    # Define a function that returns data. This function will be repetedly called.
+    def cpu_average():     
         return [cpu_percent()]
-
 
     fig = plt.figure(figsize=(10, 3))
     ax1 = fig.add_subplot(111)
