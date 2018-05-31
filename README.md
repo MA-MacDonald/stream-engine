@@ -40,7 +40,7 @@ def all_cpu():
     return cpu_percent(percpu=True)  # Note: we do not have to bracket the return because 
                                      # psutil.cpu_percent(percpu=True) returns a list by default.
 ```
-Now lets create a new Stream with our new data function and add it to our StreamAnimation object `anim`.  
+Now lets create a new Stream with our new data function and add it to our StreamAnimation object.  
 ```Python
 ave_stream = Stream(ax1, cpu_average)
 cpu_stream = Stream(ax1, all_cpu)
@@ -53,7 +53,7 @@ By default no processing is done to the data. It is simply graphed as it is reci
 
 In our example above we are plotting the raw cpu percent values which are very sporadic and hard to read. We can define a custom processor to smooth the data before we plot it which will make it more readable and mimic a standard system monitor tool.
 
-A Stream processor takes in a thread (the line object and the line data) and data (the next value to be added tot the thread).
+A Stream processor takes in a `thread` (the line object and the line data) and `data` (the next value to be added tot the thread).
 ```Python
 # The default data processor.
 def stream_proc(thread, data):
