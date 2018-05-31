@@ -29,7 +29,7 @@ if __name__ == '__main__':
 ```
 ![StreamEngine Example](https://i.imgur.com/oSIavjc.png)
 
-## Streams with Multiple Inputs.
+## Streams With Multiple Inputs.
 A new `Stream.thread` is created for each value in a list retured by the defined data function. A `Stream.thread` is simply an objects that holds the line and line data to be plotted for the Stream.
 **Note:** A data function must return a list of data. The above data function returns one value so we bracket the return value.
 
@@ -116,7 +116,7 @@ ax2.legend(framealpha=.0, loc=9, ncol=4)
 ```
 ![StreamEngine Example](https://i.imgur.com/WBPt1WC.png)
 
-## Taking it Further.
+## Taking It Further.
 Lets add a new Stream that represents our computers memory usage.
 ```python
 # Lets make our new data function that returns our computers memory usage.
@@ -142,7 +142,7 @@ ax3.legend(framealpha=.0, loc=9, ncol=2)
 ```
 ![StreamEngine Example](https://i.imgur.com/A6sIA99.png)
 
-## Putting it all together
+## Putting It All Together
 
 ```Python
 import matplotlib.pyplot as plt
