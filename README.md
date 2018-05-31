@@ -9,35 +9,29 @@ StreamEngine is an extention of the matplotlib Animation class which enables the
 import matplotlib.pyplot as plt
 from stream_engine.stream import Stream, StreamAnimation
 
-# simple example data function that returns the average cpu %.
-# this function will be repetedly called to create a stream of data.
-from psutil import cpu_percent
-def cpu_average():
-    return [cpu_percent()]   # (1) Define data function to pass to a Stream object.
+if __name__ == '__main__':
+    from psutil import cpu_percent
 
-fig = plt.figure()  
-ax1 = fig.add_subplot(111)    # (2) Setup a figure and axes to plot to.
-ax1.set_xlim(0, 500)
-ax1.set_ylim(0, 100)
+    def cpu_average():
+        return [cpu_percent()]
 
-anim = StreamAnimation(fig)  # (3) Create a StreamAnimation object and pass it the figure.
 
-ave_stream = Stream(ax1, cpu_average)  # (4) Create a Stream object and pass the 
-                                                  # axes you want to plot to and data function.
-anim.add_stream(ave_stream)  # (5) Add the Stream object to the StreamAnimation object.
+    fig = plt.figure(figsize=(10, 3))
+    ax1 = fig.add_subplot(111)
+    ax1.set_xlim(0, 600)
+    ax1.set_ylim(0, 100)
 
-plt.tight_layout()
-plt.show()   #(6) Show the plot.
+    anim = StreamAnimation(fig, interval=100)
+    anim.add_stream(Stream(ax1, cpu_average))
+
+    plt.tight_layout()
+    plt.show()
 ```
 ![StreamEngine Example](https://i.imgur.com/ADOYrDv.png)
 
-You can change the speed of the plot by passing an interval to StreamAnimation.  
-`anim = StreamAnimation(fig, interval=100)`  
-Delay between frames in milliseconds.  Defaults to 200.  
-
 ## Multi-Stream Example
-The above exmaple graphs one stream of data. This is because the data function we defined only returns one value.  
-A new stream is created for each value in the list retured by a data function.  
+The above exmaple graphs one stream of data (one line). This is because the data function we defined only returns one value.  
+A new stream is created for each value in a list retured by the defined data function.  
 **Note:** A data function must return a list of data. The above data function returns one value so we bracket the return value.
 
 For example if we were to create a new function that returns the % for each individual cpu instead of the average...
