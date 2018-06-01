@@ -219,7 +219,7 @@ if __name__ == '__main__':
 
     ave_stream = Stream(ax1, cpu_average, style=ave_style)
     cpu_stream = Stream(ax2, cpu_percents, style=cpu_style, proc=filter_proc)
-    mem_stream = Stream(ax3, memory_percent, style=mem_style)
+    mem_stream = Stream(ax3, mem_percent, style=mem_style)
 
     config(ax1, ax2, ax3)
 
