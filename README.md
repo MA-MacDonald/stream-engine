@@ -201,6 +201,12 @@ with plt.style.context(base_style):
 
 if __name__ == '__main__':
     from psutil import cpu_percent, virtual_memory, swap_memory
+    from scipy.ndimage.filters import gaussian_filter1d
+
+    def filter_proc(thread, data):
+        thread['data'].appendleft(data)
+        thread['line'].set_ydata(gaussian_filter1d(thread['data'], 3))
+        return thread['line']
 
     def cpu_percents():
         return cpu_percent(percpu=True)
@@ -208,12 +214,12 @@ if __name__ == '__main__':
     def cpu_average():
         return [cpu_percent()]
 
-    def memory_percent():
+    def mem_percent():
         return virtual_memory().percent, swap_memory().percent
 
-    ave_stream = Stream(ax1, cpu_average, buffer=5, style=ave_style)
-    cpu_stream = Stream(ax2, cpu_percents,  buffer=5, style=cpu_style, filt=True)
-    mem_stream = Stream(ax3, memory_percent, buffer=5, style=mem_style)
+    ave_stream = Stream(ax1, cpu_average, style=ave_style)
+    cpu_stream = Stream(ax2, cpu_percents, style=cpu_style, proc=filter_proc)
+    mem_stream = Stream(ax3, memory_percent, style=mem_style)
 
     config(ax1, ax2, ax3)
 
